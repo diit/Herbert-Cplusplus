@@ -5,8 +5,8 @@
  *      Author: Dale
  */
 
-#ifndef SRC_SUBSYSTEMS_CHASSIS_H_
-#define SRC_SUBSYSTEMS_CHASSIS_H_
+#ifndef SRC_SUBSYSTEMS_CHASSISSUBSYSTEM_H_
+#define SRC_SUBSYSTEMS_CHASSISSUBSYSTEM_H_
 
 #include "Commands/Subsystem.h"
 #include "WPILib.h"
@@ -37,4 +37,4 @@ public:
 	void Drive(double move, double turn, bool squaredInputs = false);
 };
 
-#endif /* SRC_SUBSYSTEMS_CHASSIS_H_ */
+#endif /* SRC_SUBSYSTEMS_CHASSISSUBSYSTEM_H_ */
