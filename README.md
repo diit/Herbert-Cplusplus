@@ -15,6 +15,10 @@ Herbert 2016 C++
 ## Changelog
 
 **2015-12-17** (Dale)
+- [Added] RobotMap.h, standard for mapping ports into intelligent constants.
+- [Updated] IO.cpp, Updated to include new RobotMap port maps
+
+**2015-12-17** (Dale)
 - [Refactor] Moved to Command Based Architecture
 - [Added] Doxgen, automated docblocks
 - [Added] Basic Drive Code
