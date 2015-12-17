@@ -6,14 +6,15 @@
  */
 
 #include "IO.h"
+#include "RobotMap.h"
 
 IO* IO::m_pInstance = NULL;
 
 IO::IO()
 {
 	// Process operator interface input here.
-	stickL = new Joystick(0);
-	stickR = new Joystick(1);
+	stickL = new Joystick(JOYSTICK_LEFT);
+	stickR = new Joystick(JOYSTICK_RIGHT);
 }
 
 IO* IO::GetInstance()
