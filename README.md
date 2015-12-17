@@ -10,7 +10,7 @@ Herbert 2016 C++
 
 ## Installation
 
-	[FRC Documentation](http://wpilib.screenstepslive.com/s/4485/m/13503/l/145002-installing-eclipse-c-java)
+[FRC Documentation](http://wpilib.screenstepslive.com/s/4485/m/13503/l/145002-installing-eclipse-c-java)
 
 ## Changelog
 
