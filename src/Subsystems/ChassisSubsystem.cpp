@@ -22,8 +22,14 @@ void ChassisSubsystem::InitDefaultCommand()
 	SetDefaultCommand(new DefaultDriveCommand());
 }
 
-// Put methods for controlling this subsystem
-// here. Call these from Commands.
+/**
+ * Methods for controlling the drive SubSystem,
+ * these methods are called via commands.
+ *
+ * @param move
+ * @param turn
+ * @param quad
+ */
 void ChassisSubsystem::Drive(double move, double turn, bool quad)
 {
 	m_drive.ArcadeDrive(move, turn, quad);
