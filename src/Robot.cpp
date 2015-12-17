@@ -1,40 +1,60 @@
 #include "WPILib.h"
+#include "Commands/Command.h"
+#include "Commands/DefaultDriveCommand.h"
+#include "Subsystems/Chassis.h"
 
-/**
- * This is a demo program showing the use of the RobotDrive class.
- * The SampleRobot class is the base of a robot application that will automatically call your
- * Autonomous and OperatorControl methods at the right time as controlled by the switches on
- * the driver station or the field controls.
- *
- * WARNING: While it may look like a good choice to use for your code if you're inexperienced,
- * don't. Unless you know what you are doing, complex code will be much more difficult under
- * this system. Use IterativeRobot or Command-Based instead if you're new.
- */
-class Robot: public SampleRobot
+class Robot: public IterativeRobot
 {
-	RobotDrive myRobot; // robot drive system
-	Joystick stick; // only joystick
+private:
+	Command *autonomousCommand;
+	LiveWindow *lw;
 
-public:
-	Robot() :
-			myRobot(1, 2),	// initialize the RobotDrive to use motor controllers on ports 1 and 2. It is very important that you choose the right ports
-			stick(0)  //This is the USB port that the joystick is in
+	void RobotInit()
 	{
-		myRobot.SetExpiration(0.1);
+		// Create a single static instance of all of your subsystems. The following
+		// line should be repeated for each subsystem in the project.
+		ChassisSubsystem::GetInstance();
+
+		autonomousCommand = NULL;
+		lw = LiveWindow::GetInstance();
 	}
 
-	/**
-	 * Runs the motors with arcade steering.
-	 */
-	void OperatorControl()
+	void DisabledPeriodic()
 	{
-		while (IsOperatorControl() && IsEnabled())
-		{
-			myRobot.ArcadeDrive(stick); // drive with arcade style (use right stick)
-			Wait(0.005);				// wait for a motor update time
-		}
+		Scheduler::GetInstance()->Run();
 	}
 
+	void AutonomousInit()
+	{
+		if (autonomousCommand != NULL)
+			autonomousCommand->Start();
+	}
+
+	void AutonomousPeriodic()
+	{
+		Scheduler::GetInstance()->Run();
+	}
+
+	void TeleopInit()
+	{
+		// This makes sure that the autonomous stops running when
+		// teleop starts running. If you want the autonomous to
+		// continue until interrupted by another command, remove
+		// this line or comment it out.
+		if (autonomousCommand != NULL)
+			autonomousCommand->Cancel();
+	}
+
+	void TeleopPeriodic()
+	{
+		Scheduler::GetInstance()->Run();
+	}
+
+	void TestPeriodic()
+	{
+		lw->Run();
+	}
 };
 
 START_ROBOT_CLASS(Robot);
+
